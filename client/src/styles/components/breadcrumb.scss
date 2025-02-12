@@ -1,0 +1,35 @@
+
+.breadcrumb_section{
+    .breadcrumb{
+        list-style: none;
+        display: flex;
+        .breadcrumb-item{
+            cursor: pointer;
+            span{
+                margin: 0 4px;
+                color: #777; 
+            }
+            a{
+                // margin: 0 0 1em;
+                padding: 0;
+                font-size: .92em;
+                color: #777;  
+                text-transform: capitalize;
+                text-decoration: none;
+
+                &:hover{
+                    color: #c19a83;
+                }
+            }
+
+            &:last-child{
+                 span{
+                    display: none;
+                 }
+            }
+
+        }
+  
+
+    }
+}
