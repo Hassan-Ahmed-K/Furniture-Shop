@@ -1,10 +1,25 @@
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import {logout} from "../redux/reducers/userReducer.js";
+import { clearToken } from "../redux/reducers/authReducer.js";
 
 const NavBar = () => {
   const is_login = useSelector((state) => state.auth.token);
+  const is_users = useSelector((state) => state.user.user)
+  console.log("is_login = ", is_login);
+  console.log("is_users = ", is_users);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logout_action = () => {
+    dispatch(logout()); 
+    dispatch(clearToken()); 
+    navigate("/login");
+  };
+
+
   useEffect(() => {
     const navIcon = document.getElementById("nav-icon3");
     const mobileNav = document.querySelector(".mob_nav .navbar_links");
@@ -27,7 +42,9 @@ const NavBar = () => {
     <header>
       <nav className="desktop_nav">
         <div className="logo">
-          <img src={logo} alt="Company Logo" />
+          <Link to="/">
+            <img src={logo} alt="Company Logo" />
+          </Link>
         </div>
         <ul className="navbar_links">
           <li className="link">
@@ -37,20 +54,20 @@ const NavBar = () => {
             <Link to="/shop">Shop</Link>
           </li>
           <li className="link">
-            <Link to="/track-order">Track Order</Link>
+            <Link to="/trackOrder">Track Order</Link>
           </li>
-          <li className="link">
-            <Link to="/help">Help</Link>
-          </li>
-          {!is_login && (
+          {!is_login ? (
             <li className="link">
               <Link to="/login">Login</Link>
+            </li>
+          ) : (
+            <li className="link">
+              <p onClick={logout_action}>Logout</p>
             </li>
           )}
 
           <li className="link">
             <Link to="/cart">
-              {/* <object type="image/svg+xml" data={cart_icon}></object> */}
               <svg
                 version="1.1"
                 id="ast-basket-icon-svg"
@@ -93,14 +110,17 @@ const NavBar = () => {
             <Link to="/products">Products</Link>
           </li>
           <li className="link">
-            <Link to="/track-order">Track Order</Link>
+            <Link to="/trackOrder">Track Order</Link>
           </li>
-          <li className="link">
-            <Link to="/help">Help</Link>
-          </li>
-          <li className="link">
-            <Link to="/login">Login</Link>
-          </li>
+          {!is_login ? (
+            <li className="link">
+              <Link to="/login">Login</Link>
+            </li>
+          ) : (
+            <li className="link">
+              <p onClick={logout_action}>Logout</p>
+            </li>
+          )}
           <li className="link">
             <Link to="/cart">Cart</Link>
           </li>

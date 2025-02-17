@@ -1,10 +1,12 @@
-import { BrowserRouter,Routes,Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/homePage";
 import LoginPage from "./pages/loginPage";
 import ShopPage from "./pages/shopPage";
 import ProductPage from "./pages/productPage";
 import CartPage from "./pages/cartPage";
 import CheckoutPage from "./pages/checkoutPage";
+import OrderTrackPage from "./pages/orderTrackPage"; 
+import CategoryPage from "./pages/CategoryPage";
 
 function App() {
   return (
@@ -17,9 +19,13 @@ function App() {
           <Route path="/shop/:id" element={<ProductPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<CheckoutPage />} />
+          <Route path="/trackOrder" element={<OrderTrackPage />} />
+          <Route
+            path="/shop/category/:categoryName"
+            element={<CategoryPage />}
+          />
         </Routes>
       </BrowserRouter>
-      {/* <NavBar /> */}
     </div>
   );
 }

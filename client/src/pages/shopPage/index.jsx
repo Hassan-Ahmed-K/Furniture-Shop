@@ -3,10 +3,15 @@ import NavBar from "../../components/nav";
 import { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import Breadcrumbs from "../../components/Breadcrumb";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductsSuccess } from "../../redux/reducers/productReducer.js";
+
 
 const Shop = () => {
-  const navigate = useNavigate();
-  const [products, setProducts] = useState([]);
+  // const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [products, setProducts] = useState(useSelector((state) => state.product.products) || []);
   const [sortMethods, setSortMethod] = useState("default_sorting");
 
   const getProducts = async () => {
@@ -27,16 +32,22 @@ const Shop = () => {
     }
   };
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const data = await getProducts();
-      if (data) setProducts(data);
-    };
+  
+    useEffect(() => {
+      if (products.length == 0) {
+        const fetchProducts = async () => {
+          const data = await getProducts();
+          if (data) {
+            setProducts(data);
+            dispatch(fetchProductsSuccess({ products: data }));
+          }
+        };
+  
+        fetchProducts();
 
-    fetchProducts();
-  }, []);
+      }
+    }, []);
 
-  // console.log("products = ",products);
 
   const sortProducts = (method) => {
     setSortMethod(method);

@@ -13,6 +13,10 @@ import authRoute from "./Routes/auth.js";
 import productRoute from "./Routes/product.js";
 import paymentRouter from "./Routes/payment.js"
 import orderRouter from "./Routes/order.js"
+import emailRouter from "./Routes/email.js"
+
+import nodemailer from "nodemailer";
+
 
 import products from "./data/index.js";
 import Product from "./models/Product.js";
@@ -32,21 +36,15 @@ app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
-// app.use(bodyParser.json({ limit: "30mb", extended: true }));
-// app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors({ origin: "*" }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
-
-
-
-
-
+// ROUTES 
 app.use("/auth",authRoute);
 app.use("/products",productRoute);
 app.use("/payment", paymentRouter);
 app.use("/order", orderRouter);
-
+app.use("/email", emailRouter);
 
 
 const PORT = process.env.PORT || 6001;

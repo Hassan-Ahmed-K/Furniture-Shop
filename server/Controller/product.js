@@ -14,6 +14,7 @@ export const getProducts = async (req,res) => {
 export const getCategoryProduct = async (req,res) =>{
     try{
         const { category } = req.params;
+        console.log("Category= ", category);
         const products = await Product.find({category});
         res.status(200).json(products);
     } catch(err){

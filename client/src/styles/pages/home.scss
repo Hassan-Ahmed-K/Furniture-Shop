@@ -78,11 +78,19 @@
                     font-size: 15px;
                     font-weight: 700;
                     margin-top: 20px;
+                    cursor: pointer;
+                    transition: all 0.2s linear;
                     @media (max-width:576px) {
                         font-size: 12px;
                         padding: 10px 15px;
                         font-weight: 500;
                     }
+
+                    &:hover{
+                        background-color: #c19a83;
+                    }
+
+
                 }
             }
 
@@ -92,6 +100,7 @@
 
 .brands {
     padding: 20px;
+    padding-bottom: 0;
     width: 100%;
     .wrap_brands{
         max-width: 1250px;
@@ -122,6 +131,7 @@
 
 .category_section{
     padding: 60px 20px;
+    padding-bottom: 0;
     width: 100%;
     .wrap_category{
         max-width: 1250px;
@@ -143,6 +153,7 @@
                     display: flex;
                     justify-content: center;
                     background-color: #f1f2f2;
+                    cursor: pointer;
                     @media (max-width:767px) {
                         max-width: calc(50% - 20px);
                     }
@@ -187,6 +198,7 @@
 
 .featured_product{
     padding: 60px 20px;
+    padding-bottom: 0;
     width: 100%;
     .wrap_feature_product{
         max-width: 1250px;
@@ -220,6 +232,7 @@
 
 .promotion{
     padding: 60px 20px;
+    padding-bottom: 0;
     .wrap_promotion{
         max-width: 1250px;
         width: 100%;
@@ -294,6 +307,7 @@
 
 .reviews_section{
     padding: 60px 20px;
+    padding-bottom: 0;
     .wrap_reviews{
         max-width: 1250px;
         width: 100%;
@@ -341,6 +355,7 @@
 
 .choose_us {
   padding: 60px 20px;
+  padding-bottom: 0;
 
   .wrap_choose_us {
     max-width: 1250px;

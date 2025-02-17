@@ -87,6 +87,7 @@ const ProductPage = () => {
 
       <section className="single_product_section">
         <div className="wrap_single_product_section">
+              <Breadcrumbs />
           <div className="inner_container">
             <div className="left_col">
               {product.variations.map((variation, index) => (

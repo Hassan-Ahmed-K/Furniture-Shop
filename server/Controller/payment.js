@@ -9,10 +9,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export const stripePayment = async (req, res) => {
   try {
     const { name, email, price, token } = req.body; 
-    console.log("name: ", name);
-    console.log("email: ", email);
-    console.log("price: ", price);
-
     if (!token) {
       return res.status(400).json({ error: "Payment token is required" });
     }
@@ -21,7 +17,7 @@ export const stripePayment = async (req, res) => {
 
     const customer = await stripe.customers.create({
       email: email,
-      source: token.id, 
+      source: token, 
       name: name,
     });
 

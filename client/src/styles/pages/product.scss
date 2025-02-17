@@ -5,10 +5,23 @@
         max-width: 1250px;
         width: 100%;
         margin: 0 auto;
+
+        .breadcrumb_section{
+                    margin-bottom: 15px;
+                    display: none;
+                    @media (max-width:767px) {
+                        display: block;
+                    }
+
+                }
         .inner_container{
             display: flex;
             justify-content: center;
             gap: 20px;
+            @media (max-width:767px) {
+                flex-direction: column;
+                
+            }
             .left_col {
                 width: 45%;
                 display: flex;
@@ -16,12 +29,47 @@
                 flex-wrap: wrap;
                 gap: 10px;
                 overflow: hidden;
+                
+                
+                @media (max-width:767px) {
+                width: 100%;
+
+                
+                }
                 .image{
                     width: 100%;
                     overflow: hidden;
+                    @media (max-width:767px) {
+                        width:  calc(33.33% - 10px);
+                
+                    }
+                    @media (max-width:576px) {
+                        width:  calc(50% - 5px);
+                
+                    }
+
+                    @media (max-width:420px) {
+                        width:  100%;
+                
+                    }
 
                     &:not(:first-child) {
                     width: calc(50% - 5px);
+                    @media (max-width:767px) {
+                        width:  calc(33.33% - 5px);
+                        min-width: 130px;
+                
+                    }
+                    @media (max-width:576px) {
+                        width:  calc(50% - 5px);
+                
+                    }
+
+                    @media (max-width:420px) {
+                        width: calc(50% - 5px);
+                
+                    }
+
                     }
 
                 }
@@ -44,8 +92,16 @@
 
             .right_col{
                 width: 55%;
+                @media (max-width:767px) {
+                        width: 100%;
+                    }
+                
                 .breadcrumb_section{
+                    display: block;
                     margin-bottom: 15px;
+                    @media (max-width:767px) {
+                        display: none;
+                    }
                 }
                 .category{
                     color: rgba($color: #000000, $alpha: 0.61);
@@ -203,6 +259,10 @@
                         background-color: #fff;
 
                         width: fit-content;
+                        min-width: 250px;
+                        // @media (max-width:991px) {
+                        //     font-size: 20px;
+                        // }
                 }
                 .gateway_images{
                     padding: 13px 20px 18px;

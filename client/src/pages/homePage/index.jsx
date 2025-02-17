@@ -4,7 +4,7 @@ import SliderComponent from "../../components/Slider";
 import Product from "../../components/Product";
 import Footer from "../../components/Footer";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useState,useEffect } from "react";
 
 
 import { fetchProductsSuccess } from "../../redux/reducers/productReducer.js"
@@ -20,18 +20,13 @@ import cat1 from "../../assets/cat1.jpg";
 import cat2 from "../../assets/cat2.jpg";
 import cat3 from "../../assets/cat3.jpg";
 import cat4 from "../../assets/cat4.jpg";
-import product1 from "../../assets/product.jpg";
-import product2 from "../../assets/product2.jpg";
-import product3 from "../../assets/product3.jpg";
-import product4 from "../../assets/product4.jpg";
-import product5 from "../../assets/product5.jpg";
 import star from "../../assets/star.png"
+import { useNavigate } from "react-router-dom";
 
 
 const HomePage = () => {
-  console.log("localstorage: ",JSON.parse(localStorage.getItem("USER")));
-    
-  const products = useSelector((state) => state.product.products);
+  const navigate = useNavigate();
+  const [products, setProducts] = useState(useSelector((state) => state.product.products) || []); 
   const dispatch = useDispatch();
   const imageArray = [brand1, brand2, brand3, brand4];
   const categories = [
@@ -40,52 +35,6 @@ const HomePage = () => {
     { img: cat3, name: "Living Room" },
     { img: cat4, name: "Office" },
   ];
-
-
-
-  // const products = [
-  //   {
-  //     img: product1,
-  //     name: "Product 1",
-  //     original_price: "105.00",
-  //     current_price: "85.00",
-  //     colors: ["#000000", "#8f6453", "#dabca2"],
-  //   },
-  //   {
-  //     img: product2,
-  //     name: "Product 2",
-  //     original_price: "120.00",
-  //     current_price: "95.00",
-  //     colors: ["#000000", "#8f6453", "#dabca2"],
-  //   },
-  //   {
-  //     img: product3,
-  //     name: "Product 3",
-  //     original_price: "150.00",
-  //     current_price: "125.00",
-  //     colors: ["#000000", "#8f6453", "#dabca2"],
-  //   },
-  //   {
-  //     img: product4,
-  //     name: "Product 4",
-  //     original_price: "99.00",
-  //     current_price: "79.00",
-  //     colors: ["#000000", "#8f6453", "#dabca2"],
-  //   },
-  //   {
-  //     img: product5,
-  //     name: "Product 5",
-  //     original_price: "200.00",
-  //     current_price: "180.00",
-  //     colors: ["#000000", "#8f6453", "#dabca2"],
-  //   },
-  // ];
-
-  // const name = products[0].name;
-  // const img = products[0].img;
-  // const original_price = products[0].original_price;
-  // const current_price = products[0].current_price;
-  // const colors = products[0].colors;
 
   const reviews = [
     {
@@ -104,6 +53,8 @@ const HomePage = () => {
       username: "David Lee",
     },
   ];
+
+  console.log("Products =", products);
 
     const getProducts = async () => {
       try {
@@ -124,13 +75,19 @@ const HomePage = () => {
     };
   
     useEffect(() => {
-      const fetchProducts = async () => {
-        const data = await getProducts();
-        if (data) dispatch(fetchProductsSuccess({ products: data }));
-        // console.log("products = ", data);
-      };
-  
-      fetchProducts();
+      if (products.length == 0) {
+        const fetchProducts = async () => {
+          const data = await getProducts();
+          if (data) {
+            setProducts(data);
+            dispatch(fetchProductsSuccess({ products: data }));
+            
+          }
+        };
+
+        fetchProducts();
+        
+      }
     }, []);
 
 
@@ -147,7 +104,9 @@ const HomePage = () => {
               <p className="subtitle">Black Friday in July</p>
               <h2 className="heading">Up to 50% off</h2>
               <p className="title">Hundreds of styles available</p>
-              <button className="btn">SHOP NOW</button>
+              <button className="btn" onClick={() => navigate("/shop")}>
+                SHOP NOW
+              </button>
             </div>
           </div>
         </div>
@@ -167,11 +126,15 @@ const HomePage = () => {
             <span className="line"></span>
             <div className="categories">
               {categories.map((category) => (
-                <div className="category" key={category.name}>
+                <div
+                  className="category"
+                  onClick={() => navigate(`/shop/category/${category.name}`)}
+                  key={category.name}
+                >
                   <img src={category.img} alt="" />
                   <div className="detail">
                     <h3 className="category_name">{category.name}</h3>
-                    <p className="product_count">6 Products</p>
+                    {/* <p className="product_count">6 Products</p> */}
                   </div>
                 </div>
               ))}
@@ -218,12 +181,14 @@ const HomePage = () => {
             <div className="right_col">
               {products && (
                 <div className="products">
-                  <Product
-                    key={products[0]._id}
-                    id={products[0]._id}
-                    name={products[0].name}
-                    variations={products[0].variations || []}
-                  />
+                  {products.length > 0 && (
+                    <Product
+                      key={products[0]._id}
+                      id={products[0]._id}
+                      name={products[0].name}
+                      variations={products[0].variations || []}
+                    />
+                  )}
                 </div>
               )}
             </div>

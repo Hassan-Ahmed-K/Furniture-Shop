@@ -6,7 +6,7 @@ import promotion_img from "../../assets/bg-01.jpg";
 const LoginPage = () =>{
     return (
       <>
-        {/* <NavBar /> */}
+        <NavBar />
         <section className="form_section">
           <div className="left_col">
             <img src={promotion_img} alt="" />

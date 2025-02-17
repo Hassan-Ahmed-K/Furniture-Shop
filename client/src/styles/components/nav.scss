@@ -53,7 +53,7 @@ header{
             }
 
              &:hover{
-                a{
+                a,p{
                     color: #c19a83;
                 }
                 &::before {
@@ -65,7 +65,8 @@ header{
                     width: 40px;
                     height: 40px;
                 }
-                a{
+                a,p{
+                    cursor: pointer;
                     text-decoration: none;
                     color: #000;
                     font-size: 12px;

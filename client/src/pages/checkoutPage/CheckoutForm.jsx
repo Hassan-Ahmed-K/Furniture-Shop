@@ -5,10 +5,12 @@ import { useSelector,useDispatch } from "react-redux";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import { useState } from "react";
 import { clearCart } from "../../redux/reducers/cartReducer";
+import { useNavigate } from "react-router-dom";
 
 
-const CheckoutForm = ({price}) => {
+const CheckoutForm = ({price, products}) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -38,26 +40,64 @@ const CheckoutForm = ({price}) => {
 
   const handleSubmit = async (values, { resetForm }) => {
     if (!stripe || !elements) {
-      console.error("Stripe has not loaded yet.");
-      return;
-    }
-
-    const cardElement = elements.getElement(CardElement);
-    const { token, error } = await stripe.createToken(cardElement);
-
-    if (error) {
-      console.error("Stripe Token Error:", error);
+      console.log("Stripe has not loaded yet.");
       return;
     }
 
     try {
-      const response = await fetch("http://localhost:5000/payment/card", {
+      if (!price || !user || !products || !verification_token) {
+        console.error(
+          "Missing required fields: price, user, products, or verification_token."
+        );
+        return;
+      }
+
+      let transactionId = "";
+
+      if (values.paymentMethod === "CARD") {
+        const cardElement = elements.getElement(CardElement);
+        const { token, error } = await stripe.createToken(cardElement);
+
+        if (error) {
+          console.error("Stripe Token Error:", error);
+          return;
+        }
+
+        const response = await fetch("http://localhost:5000/payment/card", {
+          method: "POST",
+          body: JSON.stringify({
+            name: values.firstName,
+            email: values.email,
+            price: price,
+            token: token.id,
+          }),
+          headers: {
+            Authorization: `Bearer ${verification_token}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.id) {
+          console.error("Payment failed:", data);
+          return;
+        }
+
+        console.log("Payment successful, processing order...");
+        transactionId = data.id; 
+      }
+
+      const order_response = await fetch("http://localhost:5000/order", {
         method: "POST",
         body: JSON.stringify({
-          name: values.firstName,
-          email: values.email,
+          user: user,
+          products: products,
           price: price,
-          token: token,
+          paymentMethod: {
+            method: values.paymentMethod,
+            transactionId: transactionId, // ✅ Use transactionId for CARD, empty for COD
+          },
         }),
         headers: {
           Authorization: `Bearer ${verification_token}`,
@@ -65,18 +105,47 @@ const CheckoutForm = ({price}) => {
         },
       });
 
-      const data = await response.json();
-      console.log("Payment Response:", data);
-      if (response.ok) {
-        resetForm();
-        dispatch(clearCart());
-      } else {
-        console.error("Payment failed:", data);
+      const orderData = await order_response.json();
+
+      if (!order_response.ok) {
+        console.error("Order Registration Failed:", orderData);
+        return;
       }
+
+      console.log("Order successfully placed!");
+
+      const email_response = await fetch(
+        "http://localhost:5000/email/send-email",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            to: values.email,
+            subject: "Order Placed - Furniture Store",
+            message: "Thank you for ordering!",
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const emailData = await email_response.json(); // ✅ Await response
+
+      if (!email_response.ok) {
+        console.error("Email sending failed:", emailData);
+      } else {
+        console.log("Order confirmation email sent!");
+      }
+
+      resetForm();
+      dispatch(clearCart());
+      navigate("/shop");
     } catch (error) {
       console.error("Payment Request Error:", error);
     }
   };
+
+
 
   return (
     <Formik
@@ -90,7 +159,7 @@ const CheckoutForm = ({price}) => {
         state: "",
         zip: "",
         country: "",
-        paymentMethod: "card",
+        paymentMethod: "CARD",
       }}
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
@@ -240,13 +309,13 @@ const CheckoutForm = ({price}) => {
             <div className="row">
               <div className="field">
                 <label>
-                  <Field type="radio" name="paymentMethod" value="card" />
+                  <Field type="radio" name="paymentMethod" value="CARD" />
                   Card
                 </label>
               </div>
               <div className="field">
                 <label>
-                  <Field type="radio" name="paymentMethod" value="cash" />
+                  <Field type="radio" name="paymentMethod" value="COD" />
                   COD (Cash On Delivery)
                 </label>
               </div>
@@ -257,7 +326,7 @@ const CheckoutForm = ({price}) => {
               className="error"
             />
             {/* Card Payment Section */}
-            {values.paymentMethod === "card" && (
+            {values.paymentMethod === "CARD" && (
               <div className="stripeContainer">
                 <CardElement
                   className="field"
@@ -297,7 +366,7 @@ const CheckoutForm = ({price}) => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            className=""
           >
             {isSubmitting ? "Processing..." : "Place Order"}
           </button>

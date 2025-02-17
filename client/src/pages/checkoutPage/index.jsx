@@ -72,7 +72,7 @@ const CheckoutPage = () => {
             <div className="inner_container">
               <div className="left_col">
                 <Elements stripe={stripePromise}>
-                  <CheckoutForm price={totalPrice} />
+                  <CheckoutForm price={totalPrice} products={product} />
                 </Elements>
               </div>
               <div className="right_col">
