@@ -47,6 +47,11 @@ app.use("/order", orderRouter);
 app.use("/email", emailRouter);
 
 
+app.get("/",(req,res) =>{
+    res.status(200).json("Hassan Ahmed Khan")
+})
+
+
 const PORT = process.env.PORT || 6001;
 
 connectDB();
