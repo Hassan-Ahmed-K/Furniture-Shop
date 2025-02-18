@@ -1,0 +1,108 @@
+footer{
+    padding: 60px 20px;
+    .wrap_footer{
+        max-width: 1250px;
+        width: 100%;
+        margin: 0 auto;
+
+        .inner_container{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 40px;
+            @media (max-width:767px) {
+                flex-wrap: wrap;
+            }
+
+            .footer_logo{
+                width: 100%;
+                max-width: 100px;
+                object-fit: none;
+                flex-basis: 25%;
+                // @media (max-width:767px) {
+                //     flex-basis: 100%;
+                // }
+            }
+            .container{
+                flex-basis: 75%;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+            .links, .categories{
+                @media (max-width:767px) {
+                    flex-basis: 50%;
+                    margin-bottom: 30px;
+                }
+                h2{
+                    font-size: 1.4rem;
+                    line-height: 1.25em;
+                    font-weight: 400;
+                    margin-bottom: 20px;
+                }
+                ul{
+                    list-style-type: none;
+                    li{
+                        transition: all .2s linear;
+                        font-size: 1rem;
+                        color: #c19a83;
+                        cursor: pointer;
+                        span{
+                            color: #000;
+                        }
+                        &:hover{
+                            color: #000;
+                        }
+                    }
+                }
+            }
+            .subscribe_form{
+                @media (max-width:767px) {
+                    flex-basis: 50%;
+                    margin-bottom: 30px;
+                }
+                
+                h2{
+                    font-size: 1.4rem;
+                    line-height: 1.25em;
+                    font-weight: 400;
+                    margin-bottom: 20px;
+                }
+                form{
+                    input{
+                        min-width: 235px;
+                        display: block;
+                        color: #666;
+                        padding: .75em;
+                        border: 1px solid rgba(0, 0, 0, 0.07);
+                        border-radius: 2px;
+                        background: #FAFAFA;
+                        box-shadow: none;
+                        transition: all .2s linear;
+                        width: 100%;
+                        margin-bottom: 30px;
+                        cursor: pointer;
+                    }
+                    button{
+
+                        padding: 15px 25px;
+                        line-height: 1em;
+                        text-transform: uppercase;
+                        border: none;
+                        background-color: #000;
+                        color: #fff;
+                        transition: all .2s linear;
+                        cursor: pointer;
+
+                        &:hover{
+                            background-color: #c19a83;
+                            
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}

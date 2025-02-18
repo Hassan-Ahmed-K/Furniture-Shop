@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Oswald", serif;
+}
+
+html,body,#root,.App{
+    width: 100%;
+    height: 100%;
+    font-family: "Oswald", serif;
+    font-optical-sizing: auto;
+
+    &.no-scroll{
+        overflow: hidden
+    }
+}
+
+@import "./components/nav.scss";
+@import "./components/Product.scss";
+@import "./components/footer.scss";
+@import "./components/breadcrumb.scss";
+@import "./components/cart.scss";
+@import "./components/orderSummary.scss";
+@import "./components/checkoutForm.scss";
+
+@import "./pages/home.scss";
+@import "./pages/login.scss";
+@import "./pages/shop.scss";
+@import "./pages/product.scss";
+@import "./pages/cartPage.scss";
+@import "./pages/checkout.scss";
+@import "./pages/checkout.scss";
+@import "./pages/trackOrderPage.scss";
