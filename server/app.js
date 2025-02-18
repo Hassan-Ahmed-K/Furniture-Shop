@@ -36,7 +36,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("dev"));
-app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "https://furniture-store-d3076.web.app/" }));
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 // ROUTES 
