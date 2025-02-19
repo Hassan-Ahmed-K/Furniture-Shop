@@ -12,7 +12,7 @@ const OrderTrackPage = () => {
     const fetchOrders = async () => {
       try {
         const response = await fetch(
-          `http://13.127.166.185:443/order/trackOrder/${userId}`,
+          `https://furniture-shop-75qd.onrender.com/order/trackOrder/${userId}`,
           {
             method: "GET",
             headers: {
@@ -79,7 +79,7 @@ const OrderTrackPage = () => {
                           <td>
                             <img
                               className="cart-img"
-                              src={`http://13.127.166.185:443/assets/${
+                              src={`https://furniture-shop-75qd.onrender.com/assets/${
                                 item.product_ref.variations[item.variation]
                                   .image
                               }`}
@@ -159,7 +159,7 @@ const OrderTrackPage = () => {
                             <div className="product-image">
                               <img
                                 className="cart-img"
-                                src={`http://13.127.166.185:443/assets/${
+                                src={`https://furniture-shop-75qd.onrender.com/assets/${
                                   item.product_ref.variations[item.variation]
                                     .image
                                 }`}

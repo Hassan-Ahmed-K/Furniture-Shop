@@ -16,7 +16,7 @@ const CategoryPage = () => {
     const getCategoryProduct = async () => {
       try {
         const response = await fetch(
-          `http://13.127.166.185:443/products/category/${categoryName}`,
+          `https://furniture-shop-75qd.onrender.com/products/category/${categoryName}`,
           {
             method: "GET",
             headers: { "Content-Type": "application/json" },

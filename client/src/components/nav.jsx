@@ -8,8 +8,6 @@ import { clearToken } from "../redux/reducers/authReducer.js";
 const NavBar = () => {
   const is_login = useSelector((state) => state.auth.token);
   const is_users = useSelector((state) => state.user.user)
-  console.log("is_login = ", is_login);
-  console.log("is_users = ", is_users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -23,11 +21,13 @@ const NavBar = () => {
   useEffect(() => {
     const navIcon = document.getElementById("nav-icon3");
     const mobileNav = document.querySelector(".mob_nav .navbar_links");
+    const header = document.querySelector("header");
     const body = document.body;
 
     const handleClick = () => {
       navIcon.classList.toggle("open");
       mobileNav.classList.toggle("open");
+      header.classList.toggle("open");
       body.classList.toggle("no-scroll");
     };
 

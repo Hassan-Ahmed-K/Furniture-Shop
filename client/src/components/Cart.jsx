@@ -21,7 +21,7 @@ const Cart = ({ setPrice }) => {
           cartItems.map(async (item) => {
             try {
               const response = await fetch(
-                `http://13.127.166.185:443/products/${item.id}`
+                `https://furniture-shop-75qd.onrender.com/products/${item.id}`
               );
 
               if (!response.ok) {
@@ -117,7 +117,7 @@ const Cart = ({ setPrice }) => {
                 </td>
                 <td>
                   <img
-                    src={`http://13.127.166.185:443/assets/${
+                    src={`https://furniture-shop-75qd.onrender.com/assets/${
                       selectedVariation.image || "default.jpg"
                     }`}
                     alt={item.name}
@@ -211,7 +211,7 @@ const Cart = ({ setPrice }) => {
                 <div className="left_col">
                   <div className="product-image">
                     <img
-                      src={`http://13.127.166.185:443/assets/${
+                      src={`https://furniture-shop-75qd.onrender.com/assets/${
                         selectedVariation.image || "default.jpg"
                       }`}
                       alt={item.name}

@@ -64,7 +64,7 @@ const CheckoutForm = ({price, products}) => {
         }
 
         const response = await fetch(
-          "http://13.127.166.185:443/payment/card",
+          "https://furniture-shop-75qd.onrender.com/payment/card",
           {
             method: "POST",
             body: JSON.stringify({
@@ -91,22 +91,25 @@ const CheckoutForm = ({price, products}) => {
         transactionId = data.id; 
       }
 
-      const order_response = await fetch("http://13.127.166.185:443/order", {
-        method: "POST",
-        body: JSON.stringify({
-          user: user,
-          products: products,
-          price: price,
-          paymentMethod: {
-            method: values.paymentMethod,
-            transactionId: transactionId, // ✅ Use transactionId for CARD, empty for COD
+      const order_response = await fetch(
+        "https://furniture-shop-75qd.onrender.com/order",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            user: user,
+            products: products,
+            price: price,
+            paymentMethod: {
+              method: values.paymentMethod,
+              transactionId: transactionId, // ✅ Use transactionId for CARD, empty for COD
+            },
+          }),
+          headers: {
+            Authorization: `Bearer ${verification_token}`,
+            "Content-Type": "application/json",
           },
-        }),
-        headers: {
-          Authorization: `Bearer ${verification_token}`,
-          "Content-Type": "application/json",
-        },
-      });
+        }
+      );
 
       const orderData = await order_response.json();
 
@@ -118,7 +121,7 @@ const CheckoutForm = ({price, products}) => {
       console.log("Order successfully placed!");
 
       const email_response = await fetch(
-        "http://13.127.166.185:443/email/send-email",
+        "https://furniture-shop-75qd.onrender.com/email/send-email",
         {
           method: "POST",
           body: JSON.stringify({

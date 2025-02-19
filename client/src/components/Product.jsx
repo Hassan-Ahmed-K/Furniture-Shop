@@ -1,5 +1,4 @@
 import { useState } from "react";
-import cart_icon from "../assets/cart.svg";
 import { useNavigate } from "react-router-dom";
 
 
@@ -56,7 +55,10 @@ const Product = ({ id, name, variations }) => {
             }`}
             onClick={() => navigate(`/shop/${id}`)}
           >
-            <img src={`http://13.127.166.185:443/assets/${image}`} alt={name} />
+            <img
+              src={`https://furniture-shop-75qd.onrender.com/assets/${image}`}
+              alt={name}
+            />
             <div className={`details variation-${index}`}>
               <h3 className="product_name">{name}</h3>
               <div className="price">

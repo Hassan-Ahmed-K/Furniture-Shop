@@ -20,7 +20,7 @@ const Footer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "http://13.127.166.185:443/email/send-email",
+      "https://furniture-shop-75qd.onrender.com/email/send-email",
       {
         method: "POST",
         body: JSON.stringify(emailData),

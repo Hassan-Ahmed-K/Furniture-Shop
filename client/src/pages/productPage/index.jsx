@@ -13,6 +13,7 @@ import {
 const ProductPage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [success, setSuccess] = useState(false);
   const [product, setProduct] = useState(null);
   const [error, setError] = useState(null);
   const [selectedVariationIndex, setSelectedVariationIndex] = useState(0);
@@ -29,7 +30,7 @@ const ProductPage = () => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `http://13.127.166.185:443/products/${id}`,
+          `https://furniture-shop-75qd.onrender.com/products/${id}`,
           {
             method: "GET",
             headers: {
@@ -78,6 +79,7 @@ const ProductPage = () => {
       };
 
       dispatch(addToCartSuccess({ cartItem: cartItem })); 
+      setSuccess(true);
   };
 
 
@@ -97,7 +99,7 @@ const ProductPage = () => {
                 <div className="image">
                   <img
                     key={`variation-image--${product.name}-${index}`}
-                    src={`http://13.127.166.185:443/assets/${variation.image}`}
+                    src={`https://furniture-shop-75qd.onrender.com/assets/${variation.image}`}
                     alt={product.name}
                     className={`variation-image ${index === 0 && "zoom"}`}
                     onMouseMove={index === 0 ? handleMouseMove : undefined}
@@ -186,13 +188,20 @@ const ProductPage = () => {
                     +
                   </button>
                 </div>
-                <button
-                  type="submit"
-                  className="add_to_cart"
-                  onClick={handleAddToCart}
-                >
-                  Add to Cart
-                </button>
+                <div>
+                  <button
+                    type="submit"
+                    className="add_to_cart"
+                    onClick={handleAddToCart}
+                  >
+                    Add to Cart
+                  </button>
+                  {success && (
+                    <div className="success-message">
+                      Woohoo! Your item is waiting in the cart.
+                    </div>
+                  )}
+                </div>
               </form>
 
               <div className="payment_methods">

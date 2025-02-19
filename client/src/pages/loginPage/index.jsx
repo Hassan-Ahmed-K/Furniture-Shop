@@ -11,6 +11,7 @@ const LoginPage = () =>{
           <div className="left_col">
             <img src={promotion_img} alt="" />
           </div>
+          
 
             <div className="right_col">
                 <Form />

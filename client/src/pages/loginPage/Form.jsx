@@ -42,13 +42,16 @@ const Form = () => {
   };
 
   const register = async (values,onSubmitProps)=>{
-    const response = await fetch("http://13.127.166.185:443/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const response = await fetch(
+      "https://furniture-shop-75qd.onrender.com/auth/register",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
     if(!response.ok){
       console.log("Failed to register");
       return 
@@ -68,13 +71,16 @@ const Form = () => {
   }
 
   const login = async (values,onSubmitProps) => {
-    const response = await fetch("http://13.127.166.185:443/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(values),
-    });
+    const response = await fetch(
+      "https://furniture-shop-75qd.onrender.com/auth/login",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      }
+    );
 
     if(!response.ok){
       console.log("Failed to login");

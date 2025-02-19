@@ -20,7 +20,7 @@ const CheckoutPage = () => {
             cartItems.map(async (item) => {
               try {
                 const response = await fetch(
-                  `http://13.127.166.185:443/products/${item.id}`
+                  `https://furniture-shop-75qd.onrender.com/products/${item.id}`
                 );
 
                 if (!response.ok) {
@@ -89,7 +89,7 @@ const CheckoutPage = () => {
                       <tr key={item.id}>
                         <td className="product_col">
                           <img
-                            src={`http://13.127.166.185:443/assets/${
+                            src={`https://furniture-shop-75qd.onrender.com/assets/${
                               item.variations[item.variation].image
                             }`}
                             alt=""

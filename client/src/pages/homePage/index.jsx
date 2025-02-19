@@ -58,12 +58,15 @@ const HomePage = () => {
 
     const getProducts = async () => {
       try {
-        const response = await fetch("http://13.127.166.185:443/products", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://furniture-shop-75qd.onrender.com/products",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }
@@ -80,10 +83,13 @@ const HomePage = () => {
           const data = await getProducts();
           if (data) {
             setProducts(data);
+            console.log("Products =",data)
             dispatch(fetchProductsSuccess({ products: data }));
             
           }
         };
+
+
 
         fetchProducts();
         
