@@ -1,5 +1,6 @@
 .checkout_section{
     padding: 120px 20px;
+    padding-bottom: 0;
     .wrap_checkout_section{
         max-width: 1250px;
         width: 100%;
@@ -17,12 +18,24 @@
             display: flex;
             justify-content: space-between;
             gap: 20px;
+            @media (max-width:767px) {
+                flex-direction: column-reverse;
+            }
             .left_col{
                 width: 65%;
+                flex-shrink: 1;
+
+                @media (max-width:767px) {
+                    width: 100%;
+                }
                 
             }
             .right_col{
                 width: 35%;
+                min-width: 280px;
+                @media (max-width:767px) {
+                    width: 100%;
+                }
 
                 table{
                     width: 100%;

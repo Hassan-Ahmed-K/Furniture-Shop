@@ -5,6 +5,7 @@ import Product from "../../components/Product";
 import Breadcrumbs from "../../components/Breadcrumb";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductsSuccess } from "../../redux/reducers/productReducer.js";
+import Footer from "../../components/Footer.jsx";
 
 
 const Shop = () => {
@@ -132,6 +133,7 @@ const Shop = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

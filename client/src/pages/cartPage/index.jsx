@@ -3,6 +3,7 @@ import NavBar from "../../components/nav"
 import Cart from "../../components/Cart";
 import OrderSummary from "../../components/orderSummary";
 import { useState } from "react";
+import Footer from "../../components/Footer";
 
 
 const CartPage = () => {
@@ -27,6 +28,7 @@ const CartPage = () => {
           </div>
         </div>
       </section>
+      <Footer />
     </>
   );
 };

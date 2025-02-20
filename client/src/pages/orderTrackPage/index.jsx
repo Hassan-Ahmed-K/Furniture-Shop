@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import NavBar from "../../components/nav";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer";
 
 const OrderTrackPage = () => {
   const userId = useSelector((state) => state.user.user)?._id || null;
@@ -208,6 +209,8 @@ const OrderTrackPage = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </>
   );
 };

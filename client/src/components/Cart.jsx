@@ -65,6 +65,7 @@ const Cart = ({ setPrice }) => {
   };
 
   const removeItem = (id,variation) => {
+    console.log(id,variation);
     dispatch(removeFromCart({ id, variation }));
   };
 
@@ -188,7 +189,9 @@ const Cart = ({ setPrice }) => {
 
           return (
             <div key={item._id}>
-              <div className="remove-item">
+              <div
+                className="remove-item"
+              >
                 <span
                   className="remove-btn"
                   onClick={() => removeItem(item._id, item.variation)}

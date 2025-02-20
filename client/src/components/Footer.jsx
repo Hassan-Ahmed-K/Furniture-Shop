@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,8 +31,8 @@ const Footer = () => {
       }
     );
     
-    const data = response;
-    console.log("Data: ", data);
+    setSuccess(true);
+    setEmailData({ ...emailData, to: "" });
   }
 
 
@@ -58,11 +59,9 @@ const Footer = () => {
                 <li onClick={() => navigate(`/shop/category/Bedroom`)}>
                   Bedroom
                 </li>
-                <li onClick={() => navigate(`/shop/category/Decor`)}>
-                  Decor 
-                </li>
+                <li onClick={() => navigate(`/shop/category/Decor`)}>Decor</li>
                 <li onClick={() => navigate(`/shop/category/Living Room`)}>
-                  Living Room 
+                  Living Room
                 </li>
                 <li onClick={() => navigate(`/shop/category/Office`)}>
                   Office
@@ -79,6 +78,11 @@ const Footer = () => {
                   placeholder="Your email address..."
                 />
                 <button type="submit">Subscribe</button>
+                {success && (
+                  <div className="success-message">
+                    Thankyou For Subscribing
+                  </div>
+                )}
               </form>
             </div>
           </div>

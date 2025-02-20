@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Product from "../../components/Product";
 import Breadcrumbs from "../../components/Breadcrumb";
 import NavBar from "../../components/nav";
+import Footer from "../../components/Footer";
 
 
 
@@ -62,6 +63,8 @@ const CategoryPage = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </>
   );
 };

@@ -41,7 +41,7 @@ const NavBar = () => {
   return (
     <header>
       <nav className="desktop_nav">
-        <div className="logo">
+        <div className="logo" onClick={() => navigate("/")}>
           <Link to="/">
             <img src={logo} alt="Company Logo" />
           </Link>
@@ -91,7 +91,7 @@ const NavBar = () => {
 
       <nav className="mob_nav">
         <div className="nav">
-          <div className="logo">
+          <div className="logo" onClick={() => navigate("/")}>
             <img src={logo} alt="Company Logo" />
           </div>
           <div id="nav-icon3">
@@ -107,7 +107,7 @@ const NavBar = () => {
             <Link to="/">Home</Link>
           </li>
           <li className="link">
-            <Link to="/products">Products</Link>
+            <Link to="/shop">Shop</Link>
           </li>
           <li className="link">
             <Link to="/trackOrder">Track Order</Link>

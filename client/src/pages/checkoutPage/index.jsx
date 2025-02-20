@@ -4,6 +4,7 @@ import CheckoutForm from "./CheckoutForm";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useSelector } from "react-redux";
+import Footer from "../../components/Footer";
 
 const CheckoutPage = () => {
     const cartItems = useSelector((state) => state.cart.cartItems);
@@ -122,6 +123,7 @@ const CheckoutPage = () => {
             </div>
           </div>
         </section>
+        <Footer />
       </>
     );
 }

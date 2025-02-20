@@ -8,6 +8,7 @@ import {
   addToCartSuccess,
   addToCartFailure,
 } from "../../redux/reducers/cartReducer";
+import Footer from "../../components/Footer";
 
 
 const ProductPage = () => {
@@ -384,6 +385,8 @@ const ProductPage = () => {
           </div>
         </div>
       </section>
+
+      <Footer />
     </>
   );
 };

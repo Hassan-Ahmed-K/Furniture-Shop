@@ -15,6 +15,9 @@
                 input{
                     width: 100%;
                 }
+                @media (max-width:767px) {
+                    width: 100%;
+                }
             }
 
             label{
@@ -71,12 +74,21 @@
                 justify-content: space-between;
                 gap: 10px;
                 width: 100%;
+                @media (max-width:767px) {
+                    flex-direction: column;
+                }
                 &.address_70_30{
                     .field{
                         width: calc(75% - 10px);
+                        @media (max-width:767px) {
+                            width: 100%;
+                        }
 
                         &.zipcode_field{
                             width: calc(25% - 10px);
+                            @media (max-width:767px) {
+                                width: 100%;
+                            }
                         }
                     }
                 }
@@ -84,6 +96,9 @@
                 &.address_33{
                     .field{
                         width: calc(33.33% - 10px);
+                        @media (max-width:767px) {
+                            width: 100%;
+                        }
                     }
                 }
 
@@ -101,15 +116,27 @@
                     width: auto;
                     margin: 0;
                     
+                    
+                }
+                .field{
+                    @media (max-width:767px) {
+                        margin-bottom: 20px;
+                    }
                 }
 
                 .row{
                     margin-bottom: 40px;
+                    @media (max-width:767px) {
+                        margin-bottom: 20px;
+                    }
                 }
             }
 
             .stripeContainer{
                 margin-bottom: 40px;
+                @media (max-width:767px) {
+                        margin-bottom: 20px;
+                    }
             }
         
         }

@@ -14,9 +14,6 @@ html,body,#root,.App{
     font-family: "Oswald", serif;
     font-optical-sizing: auto;
 
-    &.no-scroll{
-        overflow: hidden
-    }
 }
 
 @import "./components/nav.scss";
