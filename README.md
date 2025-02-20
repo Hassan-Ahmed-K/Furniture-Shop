@@ -7,6 +7,11 @@ Frontend: [Furniture Shop](https://furniture-store-hassan.netlify.app/)
 
 📽️ **Demo Video:** [Watch Here](https://youtu.be/b8mtcHRX2gI)
 
+## Demo Video 🎥
+
+[![Watch the video](https://img.youtube.com/vi/b8mtcHRX2gI/0.jpg)][((https://youtu.be/b8mtcHRX2gI))
+
+
 ---
 
 ## 📌 Overview
@@ -160,9 +165,9 @@ Create a `.env` file in the `server/` directory and add the following:
 ```env
 MONGDB_URL=your_mongodb_connection_string
 JWT_SECRET=your_secret_key
-PORT=your_smtp_host
-GMAIL_EMAIL=your_smtp_port
-GMAIL_APP_PASSWORD=your_smtp_email
+PORT=your_port
+GMAIL_EMAIL= email
+GMAIL_APP_PASSWORD=your_email_app_password
 STRIPE_SECRET_KEY=your_stripe_secret_key
 ```
 
