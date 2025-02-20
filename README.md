@@ -5,11 +5,10 @@ Frontend: [Furniture Shop](https://furniture-store-hassan.netlify.app/)
 
 📌 **Note:** The backend is hosted on Render, which may cause a **50-second delay** when loading products initially due to server cold starts.
 
-📽️ **Demo Video:** [Watch Here](https://youtu.be/b8mtcHRX2gI)
-
 ## Demo Video 🎥
 
-[![Watch the video](https://img.youtube.com/vi/b8mtcHRX2gI/0.jpg)][((https://youtu.be/b8mtcHRX2gI))
+[![Watch the video](https://img.youtube.com/vi/b8mtcHRX2gI/0.jpg)](https://youtu.be/b8mtcHRX2gI)
+
 
 
 ---
